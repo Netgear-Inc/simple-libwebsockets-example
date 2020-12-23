@@ -59,6 +59,11 @@ static struct lws_protocols protocols[] =
 
 int main( int argc, char *argv[] )
 {
+	int default_port = 8000;
+	if(argc > 1) {
+		default_port = atoi(argv[1]);
+	}
+
 	struct lws_context_creation_info info;
 	memset( &info, 0, sizeof(info) );
 
@@ -81,7 +86,7 @@ int main( int argc, char *argv[] )
 			struct lws_client_connect_info ccinfo = {0};
 			ccinfo.context = context;
 			ccinfo.address = "localhost";
-			ccinfo.port = 8000;
+			ccinfo.port = default_port;
 			ccinfo.path = "/";
 			ccinfo.host = lws_canonical_hostname( context );
 			ccinfo.origin = "origin";

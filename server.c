@@ -71,10 +71,15 @@ static struct lws_protocols protocols[] =
 
 int main( int argc, char *argv[] )
 {
+	int default_port = 8000;
+	if(argc > 1) {
+		default_port = atoi(argv[1]);
+	}
+
 	struct lws_context_creation_info info;
 	memset( &info, 0, sizeof(info) );
 
-	info.port = 8000;
+	info.port = default_port;
 	info.protocols = protocols;
 	info.gid = -1;
 	info.uid = -1;
