@@ -1,9 +1,9 @@
 all: server client
 
 server: server.c
-	gcc -g -Wall $< -o $@ `pkg-config libwebsockets --libs --cflags`
+	$(CC) -g -Wall $< -o $@ `pkg-config libwebsockets --libs --cflags`
 client: client.c
-	gcc -g -Wall $< -o $@ `pkg-config libwebsockets --libs --cflags`
+	$(CC) -g -Wall $< -o $@ `pkg-config libwebsockets --libs --cflags`
 
 clean:
 	rm -f server
